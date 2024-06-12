@@ -1,0 +1,584 @@
+{
+  "definitions": [
+    {
+      "enabled": {
+        "instanceId": "",
+        "kind": "instance"
+      },
+      "id": "sqparkpos.SqParkPosFromDeposit__1",
+      "kind": "function",
+      "statements": [
+        {
+          "conditionals": [
+            {
+              "condition": {
+                "kind": "binary",
+                "left": {
+                  "kind": "binary",
+                  "left": {
+                    "instanceId": "Robot1.ubInDepositAreaSide",
+                    "kind": "instance",
+                    "typeId": "i=1"
+                  },
+                  "operator": "|",
+                  "right": {
+                    "instanceId": "Robot1.ubInDepositAreaOpposite",
+                    "kind": "instance",
+                    "typeId": "i=1"
+                  }
+                },
+                "operator": "&",
+                "right": {
+                  "kind": "unary",
+                  "operand": {
+                    "instanceId": "Robot1.ubPosPark",
+                    "kind": "instance",
+                    "typeId": "i=12"
+                  },
+                  "operator": "!"
+                }
+              },
+              "then": [
+                {
+                  "conditionals": [
+                    {
+                      "condition": {
+                        "kind": "unary",
+                        "operand": {
+                          "instanceId": "Robot1.ubInUSLDeposit",
+                          "kind": "instance",
+                          "typeId": "i=1"
+                        },
+                        "operator": "!"
+                      },
+                      "then": [
+                        {
+                          "calleeId": "Robot1.Motion.MoveSingle",
+                          "inputArguments": [
+                            {
+                              "kind": "enum",
+                              "typeId": "tMoveJobSingle",
+                              "value": "enMoveJobSingleEnd"
+                            },
+                            {
+                              "instanceId": "Robot1.posUSLDeposit",
+                              "kind": "instance",
+                              "typeId": "oposy"
+                            },
+                            {
+                              "instanceId": "sqparkpos.dynPark",
+                              "kind": "instance",
+                              "typeId": "odynamic"
+                            }
+                          ],
+                          "kind": "functionCall"
+                        }
+                      ]
+                    }
+                  ],
+                  "kind": "if"
+                }
+              ]
+            }
+          ],
+          "kind": "if"
+        }
+      ]
+    },
+    {
+      "enabled": {
+        "instanceId": "",
+        "kind": "instance"
+      },
+      "id": "sqparkpos.SqParkPosFromDemolding__1",
+      "kind": "function",
+      "statements": [
+        {
+          "conditionals": [
+            {
+              "condition": {
+                "instanceId": "Robot1.ubInMachineArea",
+                "kind": "instance",
+                "typeId": "i=1"
+              },
+              "then": [
+                {
+                  "conditionals": [
+                    {
+                      "condition": {
+                        "instanceId": "Robot1.ubInDemoldingArea",
+                        "kind": "instance",
+                        "typeId": "i=1"
+                      },
+                      "then": [
+                        {
+                          "conditionals": [
+                            {
+                              "condition": {
+                                "instanceId": "Robot1.ubFrontSideDemolding",
+                                "kind": "instance",
+                                "typeId": "i=1"
+                              },
+                              "then": [
+                                {
+                                  "calleeId": "Robot1.Motion.MoveSingle",
+                                  "inputArguments": [
+                                    {
+                                      "kind": "enum",
+                                      "typeId": "tMoveJobSingle",
+                                      "value": "enMoveJobSingleStart"
+                                    },
+                                    {
+                                      "instanceId": "Robot1.posWaitBeforeOpening.cart.z",
+                                      "kind": "instance",
+                                      "typeId": "oposz"
+                                    },
+                                    {
+                                      "instanceId": "sqparkpos.dynPark",
+                                      "kind": "instance",
+                                      "typeId": "odynamic"
+                                    }
+                                  ],
+                                  "kind": "functionCall"
+                                }
+                              ]
+                            }
+                          ],
+                          "else": [
+                            {
+                              "calleeId": "Robot1.Motion.MoveSingle",
+                              "inputArguments": [
+                                {
+                                  "kind": "enum",
+                                  "typeId": "tMoveJobSingle",
+                                  "value": "enMoveJobSingleStart"
+                                },
+                                {
+                                  "instanceId": "Robot1.posWaitBeforeOpening.cart.x",
+                                  "kind": "instance",
+                                  "typeId": "oposx"
+                                },
+                                {
+                                  "instanceId": "sqparkpos.dynPark",
+                                  "kind": "instance",
+                                  "typeId": "odynamic"
+                                }
+                              ],
+                              "kind": "functionCall"
+                            }
+                          ],
+                          "kind": "if"
+                        }
+                      ]
+                    }
+                  ],
+                  "kind": "if"
+                },
+                {
+                  "conditionals": [
+                    {
+                      "condition": {
+                        "kind": "binary",
+                        "left": {
+                          "instanceId": "Robot1.ubDemoldingHoriz",
+                          "kind": "instance",
+                          "typeId": "i=1"
+                        },
+                        "operator": "|",
+                        "right": {
+                          "instanceId": "Robot1.ubDemoldingVertInHorizOut",
+                          "kind": "instance",
+                          "typeId": "i=1"
+                        }
+                      },
+                      "then": [
+                        {
+                          "calleeId": "Robot1.Motion.MoveSingle",
+                          "inputArguments": [
+                            {
+                              "kind": "enum",
+                              "typeId": "tMoveJobSingle",
+                              "value": "enMoveJobSingleStart"
+                            },
+                            {
+                              "instanceId": "Robot1.posWaitBeforeOpening.cart.y",
+                              "kind": "instance",
+                              "typeId": "oposy"
+                            },
+                            {
+                              "instanceId": "sqparkpos.dynPark",
+                              "kind": "instance",
+                              "typeId": "odynamic"
+                            }
+                          ],
+                          "kind": "functionCall"
+                        }
+                      ]
+                    }
+                  ],
+                  "else": [
+                    {
+                      "calleeId": "Robot1.Motion.MoveSingle",
+                      "inputArguments": [
+                        {
+                          "kind": "enum",
+                          "typeId": "tMoveJobSingle",
+                          "value": "enMoveJobSingleStart"
+                        },
+                        {
+                          "instanceId": "posUSLDemolding",
+                          "kind": "instance",
+                          "typeId": "oposy"
+                        },
+                        {
+                          "instanceId": "sqparkpos.dynPark",
+                          "kind": "instance",
+                          "typeId": "odynamic"
+                        }
+                      ],
+                      "kind": "functionCall"
+                    }
+                  ],
+                  "kind": "if"
+                },
+                {
+                  "calleeId": "Robot1.SpecialCmds.SwivelToVB",
+                  "inputArguments": [
+                    {
+                      "instanceId": "sqparkpos.dynPark",
+                      "kind": "instance",
+                      "typeId": "odynamic"
+                    }
+                  ],
+                  "kind": "functionCall"
+                },
+                {
+                  "conditionals": [
+                    {
+                      "condition": {
+                        "kind": "binary",
+                        "left": {
+                          "instanceId": "sqparkpos.posPark.cart.z.r",
+                          "kind": "instance",
+                          "typeId": "i=12"
+                        },
+                        "operator": ">",
+                        "right": {
+                          "instanceId": "Robot1.posMold.posMax.z.r",
+                          "kind": "instance",
+                          "typeId": "i=12"
+                        }
+                      },
+                      "then": [
+                        {
+                          "calleeId": "Robot1.Motion.MoveSingle",
+                          "inputArguments": [
+                            {
+                              "kind": "enum",
+                              "typeId": "tMoveJobSingle",
+                              "value": "enMoveJobSingleStart"
+                            },
+                            {
+                              "instanceId": "Robot1.posMold.posMax.z",
+                              "kind": "instance",
+                              "typeId": "oposz"
+                            },
+                            {
+                              "instanceId": "sqparkpos.dynPark",
+                              "kind": "instance",
+                              "typeId": "odynamic"
+                            }
+                          ],
+                          "kind": "functionCall"
+                        }
+                      ]
+                    }
+                  ],
+                  "kind": "if"
+                },
+                {
+                  "conditionals": [
+                    {
+                      "condition": {
+                        "kind": "binary",
+                        "left": {
+                          "instanceId": "sqparkpos.posPark.cart.z.r",
+                          "kind": "instance",
+                          "typeId": "i=12"
+                        },
+                        "operator": "<",
+                        "right": {
+                          "instanceId": "Robot1.posMold.posMin.z.r",
+                          "kind": "instance",
+                          "typeId": "i=12"
+                        }
+                      },
+                      "then": [
+                        {
+                          "calleeId": "Robot1.Motion.MoveSingle",
+                          "inputArguments": [
+                            {
+                              "kind": "enum",
+                              "typeId": "tMoveJobSingle",
+                              "value": "enMoveJobSingleStart"
+                            },
+                            {
+                              "instanceId": "Robot1.posMold.posMin.z",
+                              "kind": "instance",
+                              "typeId": "oposz"
+                            },
+                            {
+                              "instanceId": "sqparkpos.dynPark",
+                              "kind": "instance",
+                              "typeId": "odynamic"
+                            }
+                          ],
+                          "kind": "functionCall"
+                        }
+                      ]
+                    }
+                  ],
+                  "kind": "if"
+                }
+              ]
+            }
+          ],
+          "kind": "if"
+        }
+      ]
+    },
+    {
+      "enabled": {
+        "instanceId": "sqparkpos.ubActivate.bSwitch",
+        "kind": "instance"
+      },
+      "id": "sqparkpos.SqParkPosDefault__1",
+      "kind": "function",
+      "statements": [
+        {
+          "conditionals": [
+            {
+              "condition": {
+                "kind": "unary",
+                "operand": {
+                  "instanceId": "Robot1.ubPosPark",
+                  "kind": "instance",
+                  "typeId": "i=12"
+                },
+                "operator": "!"
+              },
+              "then": [
+                {
+                  "calleeId": "Robot1.Motion.MoveAxis",
+                  "inputArguments": [
+                    {
+                      "kind": "enum",
+                      "typeId": "tMoveJobAxis",
+                      "value": "enMoveJobAxisStart"
+                    },
+                    {
+                      "instanceId": "iMoveAxisID14",
+                      "kind": "instance",
+                      "typeId": "i=6"
+                    },
+                    {
+                      "instanceId": "sqparkpos.posPark.cart.x",
+                      "kind": "instance",
+                      "typeId": "oposx"
+                    },
+                    {
+                      "instanceId": "Robot1.posUSLDeposit",
+                      "kind": "instance",
+                      "typeId": "oposy"
+                    },
+                    {
+                      "instanceId": "sqparkpos.posPark.cart.z",
+                      "kind": "instance",
+                      "typeId": "oposz"
+                    },
+                    {
+                      "instanceId": "sqparkpos.dynPark",
+                      "kind": "instance",
+                      "typeId": "odynamic"
+                    }
+                  ],
+                  "kind": "functionCall"
+                },
+                {
+                  "conditionals": [
+                    {
+                      "condition": {
+                        "kind": "binary",
+                        "left": {
+                          "instanceId": "sqparkpos.posPark.cart.y.r",
+                          "kind": "instance",
+                          "typeId": "i=12"
+                        },
+                        "operator": ">",
+                        "right": {
+                          "instanceId": "Robot1.posLSLDeposit.r",
+                          "kind": "instance",
+                          "typeId": "i=12"
+                        }
+                      },
+                      "then": [
+                        {
+                          "calleeId": "Robot1.Motion.MoveSingle",
+                          "inputArguments": [
+                            {
+                              "kind": "enum",
+                              "typeId": "tMoveJobSingle",
+                              "value": "enMoveJobSingleStart"
+                            },
+                            {
+                              "instanceId": "Robot1.posLSLDeposit",
+                              "kind": "instance",
+                              "typeId": "oposy"
+                            },
+                            {
+                              "instanceId": "sqparkpos.dynPark",
+                              "kind": "instance",
+                              "typeId": "odynamic"
+                            }
+                          ],
+                          "kind": "functionCall"
+                        }
+                      ]
+                    }
+                  ],
+                  "kind": "if"
+                }
+              ]
+            }
+          ],
+          "kind": "if"
+        },
+        {
+          "condition": {
+            "kind": "binary",
+            "left": {
+              "instanceId": "Robot1.SpecialCmds.ubSwivelToDeposFromVB",
+              "kind": "instance",
+              "typeId": "i=1"
+            },
+            "operator": "|",
+            "right": {
+              "kind": "binary",
+              "left": {
+                "instanceId": "sqparkpos.posPark.cart.x.ubFin",
+                "kind": "instance",
+                "typeId": "i=12"
+              },
+              "operator": "&",
+              "right": {
+                "kind": "binary",
+                "left": {
+                  "instanceId": "Robot1.posUSLDeposit.ubFin",
+                  "kind": "instance",
+                  "typeId": "i=12"
+                },
+                "operator": "&",
+                "right": {
+                  "kind": "binary",
+                  "left": {
+                    "instanceId": "sqparkpos.posPark.cart.z.ubFin",
+                    "kind": "instance",
+                    "typeId": "i=12"
+                  },
+                  "operator": "&",
+                  "right": {
+                    "kind": "unary",
+                    "operand": {
+                      "instanceId": "Robot1.ubInMachineArea",
+                      "kind": "instance",
+                      "typeId": "i=1"
+                    },
+                    "operator": "!"
+                  }
+                }
+              }
+            }
+          },
+          "kind": "wait"
+        },
+        {
+          "calleeId": "Robot1.SpecialCmds.MoveHandToDepos",
+          "inputArguments": [
+            {
+              "instanceId": "sqparkpos.posPark.hand",
+              "kind": "instance",
+              "typeId": "oposhand"
+            },
+            {
+              "instanceId": "sqparkpos.dynPark",
+              "kind": "instance",
+              "typeId": "odynamic"
+            }
+          ],
+          "kind": "functionCall"
+        },
+        {
+          "calleeId": "Robot1.Motion.MoveRobot",
+          "inputArguments": [
+            {
+              "kind": "enum",
+              "typeId": "tMoveJobRobot",
+              "value": "enMoveJobRobotEnd"
+            },
+            {
+              "instanceId": "sqparkpos.posPark",
+              "kind": "instance",
+              "typeId": "oposrobot"
+            },
+            {
+              "instanceId": "sqparkpos.dynPark",
+              "kind": "instance",
+              "typeId": "odynamic"
+            }
+          ],
+          "kind": "functionCall"
+        }
+      ]
+    },
+    {
+      "enabled": {
+        "instanceId": "",
+        "kind": "instance"
+      },
+      "id": "sqmain.SqMainParkPos__1",
+      "kind": "function",
+      "statements": [
+        {
+          "calleeId": "sqparkpos.SqParkPosFromDeposit__1",
+          "kind": "functionCall"
+        },
+        {
+          "calleeId": "sqparkpos.SqParkPosFromDemolding__1",
+          "kind": "functionCall"
+        },
+        {
+          "calleeId": "sqparkpos.SqParkPosDefault__1",
+          "kind": "functionCall"
+        }
+      ]
+    },
+    {
+      "enabled": {
+        "instanceId": "",
+        "kind": "instance"
+      },
+      "id": "workcellparkposcycle.*",
+      "kind": "function",
+      "statements": [
+        {
+          "calleeId": "sqmain.SqMainParkPos__1",
+          "kind": "functionCall"
+        }
+      ]
+    }
+  ],
+  "entryPoint": "workcellparkposcycle.*",
+  "id": "workcellparkposcycle",
+  "kind": "sequence",
+  "version": 1
+}
